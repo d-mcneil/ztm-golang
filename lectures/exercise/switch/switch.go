@@ -13,5 +13,26 @@ package main
 
 import "fmt"
 
+func classifyAge(age int) {
+	var classification string
+
+	switch {
+	case age == 0:
+		classification = "newborn"
+	case age <= 3:
+		classification = "toddler"
+	case age <= 12:
+		classification = "child"
+	case age <= 17:
+		classification = "teenager"
+	default:
+		classification = "adult"
+	}
+
+	fmt.Println(classification)
+
+}
+
 func main() {
+	classifyAge(6)
 }

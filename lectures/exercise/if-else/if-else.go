@@ -49,5 +49,31 @@ func main() {
 	// The day and role. Change these to check your work.
 	today, role := Tuesday, Guest
 
-	accessGranted()
+	if role == Admin || role == Manager {
+		accessGranted()
+		return
+	}
+
+	if (today == Monday || today == Wednesday || today == Friday) && (role == Guest || role == Member) {
+		accessGranted()
+		return
+	}
+
+	if (today == Tuesday || today == Thursday) && role == Member {
+		accessGranted()
+		return
+	}
+
+	if (today == Saturday || today == Sunday) && role == Contractor {
+		accessGranted()
+		return
+	}
+
+	// lol
+	// if (role == Admin || role == Manager) || ((today == Monday || today == Wednesday || today == Friday) && (role == Guest || role == Member)) || ((today == Tuesday || today == Thursday) && role == Member) || ((today == Saturday || today == Sunday) && role == Contractor) {
+	// 	accessGranted()
+	// } else {
+	// 	accessDenied()
+	// }
+
 }
