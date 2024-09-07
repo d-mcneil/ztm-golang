@@ -14,5 +14,25 @@ package main
 
 import "fmt"
 
+func printNum(number int) {
+	fmt.Println(number)
+}
+
+func printStr(str string) {
+	fmt.Println(str)
+}
+
 func main() {
+	for i := 1; i <= 50; i++ {
+		switch {
+		case i%3 == 0 && i%5 == 0:
+			printStr("FizzBuzz")
+		case i%3 == 0:
+			printStr("Fizz")
+		case i%5 == 0:
+			printStr("Buzz")
+		default:
+			printNum(i)
+		}
+	}
 }

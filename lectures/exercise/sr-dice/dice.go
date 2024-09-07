@@ -23,7 +23,52 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func roll(sides int) int {
+	return rand.Intn(sides) + 1 // + 1 so we don't get 0
+}
+
+func print(sum int) {
+	switch {
+	case sum == 2:
+		fmt.Println("Snake eyes")
+	case sum == 7:
+		fmt.Println("Lucky 7")
+	case sum%2 == 0:
+		fmt.Println("Even")
+	default:
+		fmt.Println("Odd")
+	}
+
+}
 
 func main() {
+	rand.New(rand.NewSource(time.Now().UnixNano())) // initialize seed for random number generator, unix epoch time as seed
+
+	var (
+		dice  = 2
+		sides = 6
+		rolls = 2
+		sum   = 0
+	)
+
+	for r := 0; r < rolls; r++ {
+		rollSum := 0
+		for d := 0; d < dice; d++ {
+			roll := roll(sides)
+			rollSum += roll
+			fmt.Println(roll, "rolled on dice", d+1)
+		}
+		sum += rollSum
+		fmt.Print("\n")
+		fmt.Println(rollSum, "total for roll", r+1, "\n\n\n")
+	}
+
+	fmt.Println(sum)
+	print(sum)
 }
