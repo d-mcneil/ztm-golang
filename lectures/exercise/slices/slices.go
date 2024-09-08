@@ -18,5 +18,40 @@ import "fmt"
 
 type Part string
 
+func printAssemblyLine(assemblyLine []Part) {
+	fmt.Println("=== Assembly Line ===")
+	for i := 0; i < len(assemblyLine); i++ {
+		j := i
+		fmt.Println("Part", j+1, "->", assemblyLine[j])
+	}
+}
+
 func main() {
+
+	assemblyLine := make([]Part, 3)
+
+	// assemblyLine := []Part{
+	// 	"Thermocouple",
+	// 	"Pressure Sensor",
+	// 	"Valve",
+	// }
+
+	assemblyLine[0] = "Thermocouple"
+	assemblyLine[1] = "Pressure Sensor"
+	assemblyLine[2] = "Valve"
+
+	printAssemblyLine(assemblyLine)
+
+	assemblyLine2 := []Part{
+		"Motor",
+		"Pump",
+	}
+
+	assemblyLine = append(assemblyLine, assemblyLine2...)
+
+	printAssemblyLine(assemblyLine)
+
+	assemblyLine = assemblyLine[3:]
+
+	printAssemblyLine(assemblyLine)
 }
