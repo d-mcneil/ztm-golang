@@ -16,7 +16,39 @@ package main
 
 import "fmt"
 
+type Operation byte
+
+const (
+	Add Operation = iota
+	Subtract
+	Multiply
+	Divide
+)
+
+func (operation Operation) calculate(a, b int) int {
+	switch operation {
+	case Add:
+		return a + b
+	case Subtract:
+		return a - b
+	case Multiply:
+		return a * b
+	case Divide:
+		return a / b
+	}
+	return 0
+}
+
+// func (operation Operation) calculate(a, b int) int {
+// 	return [4]int{a + b, a - b, a * b, a / b}[operation]
+// }
+
 func main() {
+	add := Add
+	sub := Subtract
+	mul := Multiply
+	div := Divide
+
 	fmt.Println(add.calculate(2, 2)) // = 4
 
 	fmt.Println(sub.calculate(10, 3)) // = 7

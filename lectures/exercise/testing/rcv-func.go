@@ -26,7 +26,7 @@ type Player struct {
 	energy, maxEnergy Energy
 }
 
-func (player *Player) increaseHealth(healthToIncrease Health) {
+func (player *Player) IncreaseHealth(healthToIncrease Health) {
 	maxHealth := player.maxHealth
 	totalHealth := player.health + healthToIncrease
 	if totalHealth > maxHealth {
@@ -35,10 +35,10 @@ func (player *Player) increaseHealth(healthToIncrease Health) {
 	healthIncrease := totalHealth - player.health
 	player.health = totalHealth
 	fmt.Println("Health increased by", healthIncrease)
-	fmt.Println(*player, "\n")
+	fmt.Println(*player)
 }
 
-func (player *Player) decreaseHealth(healthToDecrease Health) {
+func (player *Player) DecreaseHealth(healthToDecrease Health) {
 	totalHealth := player.health - healthToDecrease
 	if totalHealth > player.health {
 		totalHealth = 0
@@ -46,10 +46,10 @@ func (player *Player) decreaseHealth(healthToDecrease Health) {
 	healthDecrease := player.health - totalHealth
 	player.health = totalHealth
 	fmt.Println("Health decreased by", healthDecrease)
-	fmt.Println(*player, "\n")
+	fmt.Println(*player)
 }
 
-func (player *Player) increaseEnergy(energyToIncrease Energy) {
+func (player *Player) IncreaseEnergy(energyToIncrease Energy) {
 	maxEnergy := player.maxEnergy
 	totalEnergy := player.energy + energyToIncrease
 	if totalEnergy > maxEnergy {
@@ -58,10 +58,10 @@ func (player *Player) increaseEnergy(energyToIncrease Energy) {
 	energyIncrease := totalEnergy - player.energy
 	player.energy = totalEnergy
 	fmt.Println("Energy increased by", energyIncrease)
-	fmt.Println(*player, "\n")
+	fmt.Println(*player)
 }
 
-func (player *Player) decreaseEnergy(energyToDecrease Energy) {
+func (player *Player) DecreaseEnergy(energyToDecrease Energy) {
 	totalEnergy := player.energy - energyToDecrease
 	if totalEnergy > player.energy {
 		totalEnergy = 0
@@ -69,7 +69,7 @@ func (player *Player) decreaseEnergy(energyToDecrease Energy) {
 	energyDecrease := player.energy - totalEnergy
 	player.energy = totalEnergy
 	fmt.Println("Energy decreased by", energyDecrease)
-	fmt.Println(*player, "\n")
+	fmt.Println(*player)
 }
 
 func main() {
@@ -80,13 +80,13 @@ func main() {
 		energy:    100,
 		maxEnergy: 100,
 	}
-	fmt.Println(player, "\n")
-	player.decreaseHealth(50)
-	player.increaseHealth(70)
-	player.decreaseEnergy(30)
-	player.increaseEnergy(50)
-	player.decreaseHealth(90)
-	player.decreaseEnergy(75)
-	player.increaseHealth(25)
-	player.increaseEnergy(12)
+	fmt.Println(player)
+	player.DecreaseHealth(50)
+	player.IncreaseHealth(70)
+	player.DecreaseEnergy(30)
+	player.IncreaseEnergy(50)
+	player.DecreaseHealth(90)
+	player.DecreaseEnergy(75)
+	player.IncreaseHealth(25)
+	player.IncreaseEnergy(12)
 }
