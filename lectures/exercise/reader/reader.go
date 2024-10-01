@@ -18,8 +18,79 @@
 
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
 
 func main() {
+	nonBlankLines, numCommands := 0, 0
 
+	r := bufio.NewReader(os.Stdin)
+
+	for {
+		input, inputErr := r.ReadString('\n')
+		n := strings.TrimSpace(input)
+		if n == "" {
+			continue
+		}
+		if n == "Q" || n == "q" {
+			break
+		}
+		nonBlankLines++
+		if n == "hello" || n == "bye" {
+			fmt.Println("Hello/Bye")
+		}
+		commands := strings.Split(n, " ")
+		for _, command := range commands {
+			command = strings.TrimSpace(command)
+			if command != "" {
+				numCommands++
+			}
+		}
+		if inputErr != nil {
+			if inputErr == io.EOF {
+				break
+			} else {
+				fmt.Println(inputErr)
+			}
+		}
+	}
+
+	fmt.Printf("Non-blank lines: %d\n", nonBlankLines)
+	fmt.Printf("Commands: %d\n", numCommands)
 }
+
+// import (
+// 	"bufio"
+// 	"fmt"
+// 	"os"
+// 	"strings"
+// )
+
+// func main() {
+// 	scanner := bufio.NewScanner(os.Stdin)
+// 	numLines, numCommands := 0, 0
+// 	for scanner.Scan() {
+// 		if strings.ToUpper(scanner.Text()) == "Q" {
+// 			break
+// 		}
+// 		text := strings.ToLower(strings.TrimSpace(scanner.Text()))
+// 		switch text {
+// 		case "hello":
+// 			numCommands++
+// 			println("Hello accepted")
+// 		case "bye":
+// 			numCommands++
+// 			println("Bye accepted")
+// 		}
+// 		if text != "" {
+// 			numLines++
+// 		}
+// 	}
+// 	fmt.Println("Number of non-blank lines entered: ", numLines)
+// 	fmt.Println("Number of commands entered: ", numCommands)
+// }
